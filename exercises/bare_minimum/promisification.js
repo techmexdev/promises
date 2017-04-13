@@ -31,10 +31,12 @@ var getGitHubProfileAsync = function(user) {
   Promise.promisifyAll(request);
   return request.getAsync(`https://api.github.com/users/${user}`)
     .then(response => {
-      if (JSON.parse(response.body).message === 'Not Found') {
+      var parsed = JSON.parse(response.body);
+      if (parsed.message === 'Not Found') {
         throw new Error(['Not Found', 'Failed to get GitHub profile']);
+      } else {
+        return parsed;
       }
-      return JSON.parse(response.body);
     });
 };
 
