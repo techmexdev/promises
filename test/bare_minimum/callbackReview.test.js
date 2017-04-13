@@ -48,6 +48,7 @@ describe('Callback review', function() {
     it('should accept a callback as its last argument', function(done) {
       google.get('/').reply(200);
 
+
       getStatusCode('https://google.com', function() {
         // If this asserion gets called, the callback was invoked correctly
         // Otherwise, this test will timeout after 2000ms
